@@ -1,1 +1,0 @@
-# SoftelNet-intern-task
