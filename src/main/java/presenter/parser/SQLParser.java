@@ -23,9 +23,16 @@ public class SQLParser {
     private ArrayList<String> toNormalSqlForm(ArrayList<String> inputList){
         ArrayList<String> sqlCode = extractSQLCode(inputList);
         ArrayList<String> parameters = extractParameters(sqlCode);
+        System.out.println(String.join(" ", sqlCode));
+        System.out.println(String.join(" ", parameters));
+
         for(int i = 0; i < sqlCode.size(); i++){
             if(sqlCode.get(i).equals("?")){
                 sqlCode.set(i, parameters.get(0));
+                parameters.remove(0);
+            }
+            else if(sqlCode.get(i).equals("?)")){
+                sqlCode.set(i, parameters.get(0) + ")");
                 parameters.remove(0);
             }
             else if(sqlCode.get(i).contains(paramsKeyword))
